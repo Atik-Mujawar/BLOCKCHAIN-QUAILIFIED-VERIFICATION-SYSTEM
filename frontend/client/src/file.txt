@@ -1,0 +1,81 @@
+import { Web3Storage } from "web3.storage";
+import { useState } from "react";
+import React from "react";
+import { loadBlockchainData, loadWeb3 } from "./Web3helpers"
+
+
+const apiToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDhGMGU1NjYwODYxRWIzNzNFQzlENkMyREJCOGQwMTA0RjU0N2U5RkUiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzI3MjMwOTc0MzcsIm5hbWUiOiJjZXJ0aWZpY2F0ZSJ9.DHNdISM4q7ER4kOuiF9xd5ssqkJlpBes80_8qJIBEwA";
+
+const client = new Web3Storage({ token: apiToken });
+  
+
+export default function Apps() {
+
+  const [fileaccounts, setFileAccounts] = React.useState(null);
+  const [auths, setAuths] = React.useState(null);
+  const [file, setFile] = useState("");
+  const loadAccounts = async () => {
+    let { auths, fileaccounts } = await loadBlockchainData();
+ 
+    setFileAccounts(fileaccounts);
+    setAuths(auths);
+  };
+  
+  
+  const handleUpload = async () => {
+    console.log(document.getElementById("input").files[0]);
+    var fileInput = document.getElementById("input");
+    
+    const rootCid = await client.put(fileInput.files, {
+      name: "certificate",
+      maxRetries: 3
+    });
+
+    console.log(rootCid);
+    
+    const res = await client.get(rootCid);
+    const files = await res.files();
+    console.log(files);
+    const url = URL.createObjectURL(files[0]);
+    console.log(url);
+    setFile(url);
+
+    try {
+      await auths.methods
+        .sendHash(file)
+        .send({ from: fileaccounts });
+ 
+      
+      
+    } catch (e) {
+      console.log(e.message);
+    }
+  
+  };
+
+  React.useEffect(() => {
+    loadWeb3();
+  }, []);
+ 
+  React.useEffect(() => {
+    loadAccounts();
+  }, []);
+
+    
+  return (
+    <div className="App">
+      
+      <img alt="hi" src={file} />
+
+      <div>
+        <label for="file">Choose file to upload</label>
+        <input type="file" id="input" name="file" multiple />
+      </div>
+      <div>
+        <button onClick={handleUpload}>Submit</button>
+      </div>
+    </div>
+
+  );
+}
