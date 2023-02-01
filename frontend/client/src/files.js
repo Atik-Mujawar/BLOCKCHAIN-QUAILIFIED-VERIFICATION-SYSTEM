@@ -10,7 +10,7 @@ import { Web3Storage } from "web3.storage";
 import { useState } from "react";
 
 const apiToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDhGMGU1NjYwODYxRWIzNzNFQzlENkMyREJCOGQwMTA0RjU0N2U5RkUiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzI3MjMwOTc0MzcsIm5hbWUiOiJjZXJ0aWZpY2F0ZSJ9.DHNdISM4q7ER4kOuiF9xd5ssqkJlpBes80_8qJIBEwA";
+  "";
 
 const client = new Web3Storage({ token: apiToken });
 
