@@ -8,8 +8,18 @@ import emailjs from 'emailjs-com'
 
 
 
-const Mailer = () => {
-    const email = localStorage.getItem("email");
+
+
+const apiToken =
+  "YOUR TOKEN"
+
+const client = new Web3Storage({ token: apiToken });
+  
+
+export default function Apps(props) {
+
+  const [file, setFile] = useState("");
+  const email = localStorage.getItem("email");
     const account = localStorage.getItem("account");
     <div className="c">
             <div>
@@ -30,33 +40,17 @@ const Mailer = () => {
             </div>
         </div>
     function sendEmail(e) {
-        e.preventDefault();
+      e.preventDefault();
 
-        emailjs.sendForm(
-            "service_le4lrd5",
-            "template_ugb9k9u",
-            e.target,
-            "aVd8spLfEWWnzVmBu"    
-        ).then(res=>{
-            console.log(res);
-        }).catch(err=> console.log(err));
+      emailjs.sendForm(
+          "service_le4lrd5",
+          "template_ugb9k9u",
+          e.target,
+          "aVd8spLfEWWnzVmBu"    
+      ).then(res=>{
+          console.log(res);
+      }).catch(err=> console.log(err));
     }
-
-    
-  }
-
-
-const apiToken =
-  "YOUR TOKEN"
-
-const client = new Web3Storage({ token: apiToken });
-  
-
-export default function Apps(props) {
-
-  const [file, setFile] = useState("");
-  
-  
   const handleUpload = async () => {
     console.log(document.getElementById("input").files[0]);
     var fileInput = document.getElementById("input");
@@ -72,7 +66,7 @@ export default function Apps(props) {
     var filename=n.files[0].name
     const x="https://ipfs.io/ipfs/"+rootCid+"/"+filename
     
-    document.getElementById("cid").innerHTML=x
+    document.getElementById("cid").innerHTML=y
     
     const res = await client.get(rootCid);
     const files = await res.files();
@@ -114,6 +108,7 @@ export default function Apps(props) {
                         type="text"
                         name="message"
                         value="cid"
+                        id="cid"
                     />
                 </div>
                 </div>
