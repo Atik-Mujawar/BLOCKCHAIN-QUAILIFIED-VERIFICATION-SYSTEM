@@ -7,11 +7,8 @@ import React from "react";
 import emailjs from 'emailjs-com'
 
 
-
-
-
 const apiToken =
-  "YOUR TOKEN"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGVlMDlhNkYzY0M0NjIwY2Q2OUYyRTE1YjQ2MTY3ZTE4NjNiNEVlMjIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzI4MjMxMjQyNTgsIm5hbWUiOiJkZW1vIn0.f3gB1itd-T4DrzjaOnZ-ROxnmffQ-Q76iIE4YB9cyCE"
 
 const client = new Web3Storage({ token: apiToken });
   
@@ -39,18 +36,7 @@ export default function Apps(props) {
                 
             </div>
         </div>
-    function sendEmail(e) {
-      e.preventDefault();
-
-      emailjs.sendForm(
-          "service_le4lrd5",
-          "template_ugb9k9u",
-          e.target,
-          "aVd8spLfEWWnzVmBu"    
-      ).then(res=>{
-          console.log(res);
-      }).catch(err=> console.log(err));
-    }
+    
   const handleUpload = async () => {
     console.log(document.getElementById("input").files[0]);
     var fileInput = document.getElementById("input");
@@ -66,7 +52,7 @@ export default function Apps(props) {
     var filename=n.files[0].name
     const x="https://ipfs.io/ipfs/"+rootCid+"/"+filename
     
-    document.getElementById("cid").innerHTML=y
+    document.getElementById("demo").innerHTML=x
     
     const res = await client.get(rootCid);
     const files = await res.files();
@@ -77,7 +63,18 @@ export default function Apps(props) {
     
   };
 
+  function sendEmail(e) {
+    e.preventDefault();
 
+    emailjs.sendForm(
+        "service_le4lrd5",
+        "template_ugb9k9u",
+        e.target,
+        "aVd8spLfEWWnzVmBu"    
+    ).then(res=>{
+        console.log(res);
+    }).catch(err=> console.log(err));
+  }
     
   return (
     <div className="App">
@@ -104,19 +101,20 @@ export default function Apps(props) {
                 </div>
 
                 <div className="field">
-                    <input
+                    <textarea
                         type="text"
-                        name="message"
-                        value="cid"
-                        id="cid"
+                        name="mail"
+                        id="demo"
                     />
                 </div>
                 </div>
+                <button className="uploadfile-button" value="Send" >email</button>
             </form>
 
 
       <div id="root">
-        <button onclick={()=>{ handleUpload(); sendEmail() }}>Submit</button>
+        <button onClick={handleUpload}>Submit</button>
+        
         <p id="cid"></p>
         
       </div>
