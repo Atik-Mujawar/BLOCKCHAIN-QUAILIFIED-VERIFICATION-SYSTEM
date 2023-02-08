@@ -1,6 +1,8 @@
 import Web3 from "web3/dist/web3.min.js";
  
 import Ulogin from "./contracts/Ulogin.json";
+import SendHash from "./contracts/StoreHash.json";
+
 
  
 export const loadWeb3 = async () => {
@@ -36,12 +38,17 @@ export const loadBlockchainData = async () => {
       Ulogin.networks[networkId].address
 
     );
+    const auths = new web3.eth.Contract(
+      SendHash.abi,
+      SendHash.networks[networkId].address
+
+    );
     /*const auths = new web3.eth.Contract(
       SendHash.abi,
       SendHash.networks[networkId].address
       , auths,fileaccounts:accounts[0]
     );*/
-    return { auth, accounts: accounts[0] };
+    return { auth, accounts: accounts[0],auths,fileaccounts:accounts[0] };
 
   }
 };

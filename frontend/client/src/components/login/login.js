@@ -33,7 +33,7 @@ function Login() {
       if (res.password === password) {
         localStorage.setItem("email", email);
         localStorage.setItem("account", accounts);
-        navigate("/uploadfile");
+        navigate("/file");
       } else {
         alert("wrong user credentials or please signup");
       }

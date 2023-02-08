@@ -12,7 +12,7 @@ import { useState } from "react";
 const apiToken =
   "";
 
-const client = new Web3Storage({ token: apiToken });
+const client = new Web3Storages({ token: apiToken });
 
 class files extends Component {
  

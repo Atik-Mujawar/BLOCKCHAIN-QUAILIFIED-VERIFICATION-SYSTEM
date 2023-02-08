@@ -1,5 +1,5 @@
 import './App.css';
-import Apps from './file';
+import Apps from './components/FileUpload/file';
 import Register from './components/registers/register';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Homepage from './components/homepage/homepage';
