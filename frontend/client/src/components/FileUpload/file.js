@@ -82,7 +82,7 @@ export default function Apps(props) {
     } catch (e) {
       console.log(e.message);
     }
-    document.getElementById("cid").innerHTML=x
+   // document.getElementById("cid").innerHTML=x
     document.getElementById("demo").innerHTML=x
     
     const res = await client.get(rootCid);
