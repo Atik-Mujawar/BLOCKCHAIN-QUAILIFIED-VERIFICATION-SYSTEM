@@ -52,11 +52,8 @@ export default function Apps(props) {
     var filename=n.files[0].name
     const x="https://ipfs.io/ipfs/"+rootCid+"/"+filename
     
-<<<<<<< HEAD
     document.getElementById("cid").innerHTML=x
-=======
     document.getElementById("demo").innerHTML=x
->>>>>>> ccd6adf83157fe0a3d7c088d2fb15be2ec40419a
     
     const res = await client.get(rootCid);
     const files = await res.files();
