@@ -10,8 +10,6 @@ import Mainpage from './components/mainpage/mainpage';
 import Mailer from './components/FileUpload/uploadfile';
 
 
-
-
 function App() {
 
   return (
