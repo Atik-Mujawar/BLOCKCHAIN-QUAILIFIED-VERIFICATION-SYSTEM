@@ -1,7 +1,7 @@
 import React from "react";
 import "./verify.css";
 import { useState } from "react";
-
+import QRCode from 'react-qr-code';
 
 const Verify = () => {
     const [message, setMessage] = useState('');
@@ -35,6 +35,8 @@ const Verify = () => {
         </div>
         <div className="view" style={{display: isDisplay ? 'none' : 'block'}}>
             <iframe id="display" src={updated} title="view" ></iframe>
+            <QRCode className="qr" value={updated}/>
+            <h2 className="text">SCAN THIS QR-CODE TO VIEW CERTIFICATE</h2>
         </div>
       </>
     )

@@ -66,9 +66,22 @@
 #display{
     border: 10px solid #1d2129;
     height: 500px;
-    width: 1200px;
+    width: 880px;/*1200px*/
 }
 
+.qr{
+    height: 200px;
+    width: 200px;
+    margin-left: 85px;
+    margin-bottom: 221px;
+}
+
+.text{
+    height: 200px;
+    width: 200px;
+    margin-left: 85px;
+    margin-bottom: 221px;
+}
 /*.verify-link{
     color: #fff;
     cursor: pointer;
