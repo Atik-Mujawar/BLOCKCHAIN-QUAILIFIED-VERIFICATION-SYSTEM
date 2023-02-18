@@ -12,7 +12,7 @@ const apiToken =
 
 const client = new Web3Storage({ token: apiToken });
 
-  
+
 
 export default function Apps(props) {
   
